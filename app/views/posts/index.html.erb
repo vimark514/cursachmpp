@@ -1,0 +1,22 @@
+<h1>Blog Posts</h1>
+
+<% if user_signed_in? %>
+  <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
+  <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-secondary' %>
+<% else %>
+  <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary' %>
+  <%= link_to 'Login', new_user_session_path, class: 'btn btn-secondary' %>
+<% end %>
+
+<div class="posts">
+  <% @posts.each do |post| %>
+    <div class="post">
+      <h2><%= link_to post.title, post %></h2>
+      <p><%= truncate(post.body, length: 200) %></p>
+      <% if post.user == current_user %>
+        <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-warning' %>
+        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
