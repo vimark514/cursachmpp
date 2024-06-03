@@ -14,7 +14,6 @@
           <p>Posted by <%= @post.user.email %> on <%= @post.created_at.strftime("%B %d, %Y") %></p>
           <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-warning' %>
           <%= link_to 'Back to Posts', posts_path, class: 'btn btn-secondary' %>
-          <%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
         </div>
       </div>
     </div>
